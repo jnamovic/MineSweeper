@@ -32,7 +32,7 @@ public class Minesweeper extends GraphicsProgram {
 	public void init() {
 		board= new Board(20,30);
 	}
-	//
+	
 	/**
 	 * Reveal a cell on a mouseclick.
 	 */
