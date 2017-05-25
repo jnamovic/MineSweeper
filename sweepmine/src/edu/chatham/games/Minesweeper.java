@@ -37,8 +37,12 @@ public class Minesweeper extends GraphicsProgram {
 	 * Reveal a cell on a mouseclick.
 	 */
 	public void mouseClicked(MouseEvent e) {
+		if(e.equals(MouseEvent.BUTTON1)){
 		Cell cell = (Cell) e.getSource();
-		board.revealCell(cell);
+		board.revealCell(cell);}
+		if(e.equals(MouseEvent.BUTTON2)){
+			Cell cell = (Cell) e.getSource();
+			board.flagCell(cell);}
 	}
 	
 	/** 
