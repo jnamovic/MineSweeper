@@ -15,6 +15,7 @@ public abstract class Cell extends GCompound {
 
 	public static final int CELL_WIDTH = 50;
 	public static final int CELL_HEIGHT = 50;
+	GRect rect;
 	
 	// the instance variables are protected for convenient access by the subclasses
 	protected int row, col;
@@ -29,7 +30,7 @@ public abstract class Cell extends GCompound {
 	 */
 	public Cell(int r, int c) {
 		super();
-		GRect rect = new GRect(CELL_WIDTH, CELL_WIDTH);
+		rect = new GRect(CELL_WIDTH, CELL_WIDTH);
 		rect.setFillColor(Color.BLUE);
 		rect.setFilled(true);
 		add(rect, 0, 0);
