@@ -16,6 +16,7 @@ public class MineCell extends Cell{
 	
 	public void reveal()
 	{
+		isRevealed=false;
 		rect.setFilled(false);
 		//add boom every time it's a mime
 	}
