@@ -1,7 +1,7 @@
 package edu.chatham.games;
 
 
-
+//easy 8x8-10 med 16x16-40 16x30-99
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import acm.program.GraphicsProgram;
