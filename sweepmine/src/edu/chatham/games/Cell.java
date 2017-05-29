@@ -15,6 +15,7 @@ public abstract class Cell extends GCompound {
 
 	public static final int CELL_WIDTH = 50;
 	public static final int CELL_HEIGHT = 50;
+	Minesweeper game;
 	GRect rect;
 	
 	// the instance variables are protected for convenient access by the subclasses
@@ -28,8 +29,9 @@ public abstract class Cell extends GCompound {
 	 * @param r
 	 * @param c
 	 */
-	public Cell(int r, int c) {
+	public Cell(int r, int c, Minesweeper d) {
 		super();
+		game=d;
 		rect = new GRect(CELL_WIDTH, CELL_WIDTH);
 		rect.setFillColor(Color.BLUE);
 		rect.setFilled(true);

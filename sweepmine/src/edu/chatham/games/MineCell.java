@@ -5,9 +5,9 @@ import acm.graphics.GImage;
 public class MineCell extends Cell{
 
 
-	public MineCell(int r, int c) 
+	public MineCell(int r, int c, Minesweeper d) 
 	{
-		super(r, c);
+		super(r, c, d);
 		GImage mineI = new GImage("mine");
 		mineI.scale(CELL_WIDTH/mineI.getWidth(),CELL_HEIGHT/mineI.getHeight());
 		add(mineI);

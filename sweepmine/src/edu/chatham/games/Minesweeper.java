@@ -30,7 +30,7 @@ public class Minesweeper extends GraphicsProgram {
 	 * Initializes the board, which is also the GUI.
 	 */
 	public void init() {
-		board= new Board(20,30);
+		board= new Board(20,30,10, this);
 	}
 	
 	/**
@@ -50,6 +50,10 @@ public class Minesweeper extends GraphicsProgram {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		// complete the code
+	}
+	
+	public void gameEnd(){
+		board.blowAll();
 	}
 
 	// other declarations go here
