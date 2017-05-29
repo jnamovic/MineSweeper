@@ -1,14 +1,17 @@
 package edu.chatham.games;
 
 public class Board {
-Cell[][] cellList;
-Minesweeper game;	
+private Cell[][] cellList;
+private Minesweeper game;	
+private int rows, cols;
 	public Board(int x, int y, int mines, Minesweeper sweep)
 	{
 		game=sweep;
 		cellList=new Cell[x][y];
 		int minenum=mines;
 		int space=x*y;
+		rows=x;
+		cols=y;
 		for(int i=0; i<x;i++){
 			for(int j=0;j<y;j++){
 				if( (minenum>0&&(Math.random()>1.0*mines/(x*y)))||space==minenum){
@@ -36,6 +39,18 @@ Minesweeper game;
 	
 	public void blowAll(){
 		
+	}
+	
+	public Cell[][] getCells(){
+		return cellList;
+	}
+	
+	public int getRows(){
+		return rows;
+	}
+	
+	public int getCols(){
+		return cols;
 	}
 	
 	public void flagCell(Cell cell){

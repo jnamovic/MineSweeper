@@ -56,6 +56,9 @@ public class Minesweeper extends GraphicsProgram {
 		board.blowAll();
 	}
 
+	public Board getBoard(){
+		return board;
+	}
 	// other declarations go here
 	private Board board;
 }
