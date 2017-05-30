@@ -1,5 +1,5 @@
 package edu.chatham.games;
-
+//snorzliop
 
 //easy 8x8-10 med 16x16-40 16x30-99
 import java.awt.event.ActionEvent;
@@ -43,7 +43,7 @@ public class Minesweeper extends GraphicsProgram {
 			board=new Board(20,30,10, this);
 			cell = (Cell) e.getSource();
 		}
-		turns++;//
+		turns++;
 		board.revealCell(cell);}
 		if(e.equals(MouseEvent.BUTTON2)){
 			Cell cell = (Cell) e.getSource();
