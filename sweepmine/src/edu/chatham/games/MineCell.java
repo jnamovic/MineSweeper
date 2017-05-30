@@ -9,7 +9,7 @@ public class MineCell extends Cell{
 	public MineCell(int r, int c, Minesweeper d) 
 	{
 		super(r, c, d);
-		GImage mineI = new GImage("mine");
+		GImage mineI = new GImage("mine.png");
 		mineI.scale(CELL_WIDTH/mineI.getWidth(),CELL_HEIGHT/mineI.getHeight());
 		add(mineI);
 		mineI.sendToBack();
