@@ -10,7 +10,7 @@ public class EmptyCell extends Cell {
 		super(r, c, d);
 		
 	}
-//yuppers
+
 	@Override
 	public void reveal() {
 		if(!isRevealed){
