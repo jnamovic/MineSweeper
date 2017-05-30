@@ -1,7 +1,8 @@
 package edu.chatham.games;
 
 import acm.graphics.GImage;
-
+import  sun.audio.*;    //import the sun.audio package
+import  java.io.*;
 public class MineCell extends Cell{
 
 
@@ -20,4 +21,6 @@ public class MineCell extends Cell{
 		rect.setFilled(false);
 		//add boom every time it's a mime
 	}
+	
+	
 }
