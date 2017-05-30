@@ -31,6 +31,7 @@ public class Minesweeper extends GraphicsProgram {
 	 */
 	public void init() {
 		board= new Board(20,30,10, this);
+		add(board);
 	}
 	
 	/**
