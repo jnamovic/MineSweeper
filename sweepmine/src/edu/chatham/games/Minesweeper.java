@@ -1,5 +1,5 @@
 package edu.chatham.games;
-//snorzliop
+
 
 //easy 8x8-10 med 16x16-40 16x30-99
 import java.awt.event.ActionEvent;
