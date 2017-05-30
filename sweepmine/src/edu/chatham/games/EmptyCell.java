@@ -26,6 +26,6 @@ public class EmptyCell extends Cell {
 				}
 			}
 		}
-		//add the mines near number to the image
+		//add the mines-near number to the image
 	}
 }

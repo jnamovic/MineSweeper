@@ -16,6 +16,7 @@ private int rows, cols;
 			for(int j=0;j<y;j++){
 				if( (minenum>0&&(Math.random()>1.0*mines/(x*y)))||space==minenum){
 					cellList[i][j]=new MineCell(i,j,sweep);
+					minenum--;
 				}
 				else{
 					cellList[i][j]=new EmptyCell(i,j, sweep);	
