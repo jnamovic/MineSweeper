@@ -1,6 +1,6 @@
 package edu.chatham.games;
 
-public enum dificulty 
+public enum Dificulty 
 {BEGINNER,INTERMEDIATE,EXPERT;
 	public String toString(){
 		switch(name()){
