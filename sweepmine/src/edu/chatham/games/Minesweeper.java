@@ -39,6 +39,11 @@ public class Minesweeper extends GraphicsProgram {
 	public void mouseClicked(MouseEvent e) {
 		if(e.equals(MouseEvent.BUTTON1)){
 		Cell cell = (Cell) e.getSource();
+		while(cell instanceof MineCell&& turns==0){
+			board=new Board(20,30,10, this);
+			cell = (Cell) e.getSource();
+		}
+		turns++;
 		board.revealCell(cell);}
 		if(e.equals(MouseEvent.BUTTON2)){
 			Cell cell = (Cell) e.getSource();
@@ -61,5 +66,6 @@ public class Minesweeper extends GraphicsProgram {
 	}
 	// other declarations go here
 	private Board board;
+	private int turns=0;
 }
 
