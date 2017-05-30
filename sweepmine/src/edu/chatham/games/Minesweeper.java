@@ -53,7 +53,7 @@ public class Minesweeper extends GraphicsProgram {
 	}
 	
 	public void gameEnd(){
-		board.blowAll();
+		board.blowAllUp();
 	}
 
 	public Board getBoard(){

@@ -14,12 +14,14 @@ private int rows, cols;
 		cols=y;
 		for(int i=0; i<x;i++){
 			for(int j=0;j<y;j++){
-				if( (minenum>0&&(Math.random()>1.0*mines/(x*y)))||space==minenum){
+				if( (minenum>0)&&((Math.random()>1.0*mines/(x*y))||space==minenum)){
 					cellList[i][j]=new MineCell(i,j,sweep);
 					minenum--;
+					space--;
 				}
 				else{
-					cellList[i][j]=new EmptyCell(i,j, sweep);	
+					cellList[i][j]=new EmptyCell(i,j, sweep);
+					space--;
 				}
 				
 			}
@@ -38,7 +40,7 @@ private int rows, cols;
 		}
 	}
 	
-	public void blowAll(){
+	public void blowAllUp(){
 		
 	}
 	
