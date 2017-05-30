@@ -1,11 +1,14 @@
 package edu.chatham.games;
 
-public class Board {
+import acm.graphics.GCompound;
+
+public class Board extends GCompound {
 private Cell[][] cellList;
 private Minesweeper game;	
 private int rows, cols;
 	public Board(int x, int y, int mines, Minesweeper sweep)
 	{
+		super();
 		game=sweep;
 		cellList=new Cell[x][y];
 		int minenum=mines;
