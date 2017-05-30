@@ -19,6 +19,7 @@ public class MineCell extends Cell{
 	{
 		isRevealed=false;
 		rect.setFilled(false);
+		game.gameEnd();
 		//add boom every time it's a mime
 	}
 	
