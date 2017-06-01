@@ -16,24 +16,27 @@ private int rows, cols;
 		super();
 		game=sweep;
 		cellList=new Cell[x][y];
+		//System.out.println(cellList[x-1][y-1]);
 		int minenum=mines;
 		int space=x*y;
 		rows=x;
 		cols=y;
-		for(int i=0; i<x;i++){
-			for(int j=0;j<y;j++){
-				if( (minenum>0)&&((Math.random()>1.0*mines/(x*y))||space==minenum)){
-					cellList[i][j]=new MineCell(i,j,sweep);
-					minenum--;
-					space--;
-				}//
-				else{
-					cellList[i][j]=new EmptyCell(i,j, sweep);
-					space--;
-				}
+		int xPos=-1;
+		int yPos=-1;
+		while(minenum>0)
+		{
+			do{
+			xPos = (int) (Math.random()*rows);
+			yPos = (int) (Math.random()*cols);
+			}while(cellList[xPos][yPos]!=null);
+			cellList[xPos][yPos]= new MineCell(xPos,yPos,game);
+			minenum--;
 				
-			}
 		}
+		for(int blag = 0;blag<cellList.length;blag++)
+			for(int glab=0;glab<cellList[blag].length;glab++)
+				if(cellList[blag][glab]==null)
+					cellList[blag][glab]=new EmptyCell(blag,glab,game);
 		for(int g=0; g<rows;g++)
 			for(int h=0;h<cols;h++)
 				add(cellList[g][h],CELL_WIDTH*g,CELL_HEIGHT*h);
