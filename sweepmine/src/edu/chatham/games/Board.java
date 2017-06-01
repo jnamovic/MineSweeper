@@ -23,7 +23,7 @@ private int rows, cols;
 					cellList[i][j]=new MineCell(i,j,sweep);
 					minenum--;
 					space--;
-				}
+				}//
 				else{
 					cellList[i][j]=new EmptyCell(i,j, sweep);
 					space--;
