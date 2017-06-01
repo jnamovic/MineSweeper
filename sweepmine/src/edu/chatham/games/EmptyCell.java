@@ -1,6 +1,7 @@
 package edu.chatham.games;
 
 import acm.graphics.GImage;
+import acm.graphics.GLabel;
 
 public class EmptyCell extends Cell {
 	int minesNear=0;
@@ -33,6 +34,7 @@ public class EmptyCell extends Cell {
 				}	
 			}	
 		}
-		//add the mines-near number to the image
+		GLabel number = new GLabel(""+minesNear);
+		add(number,15,30);//add the mines-near number to the image
 	}
 }
