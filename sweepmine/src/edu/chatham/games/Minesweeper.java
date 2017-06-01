@@ -47,7 +47,7 @@ public class Minesweeper extends GraphicsProgram {
 		
 		if(SwingUtilities.isLeftMouseButton(e)){
 			Cell cell=null;
-		System.out.println("you clicked a cell");
+		
 		for(int i=0;i<board.getCells().length;i++){
 			for(int x=0;x<board.getCells()[i].length;x++){
 				if( board.getCells()[i][x].contains(new GPoint(e.getPoint()))){
@@ -58,7 +58,13 @@ public class Minesweeper extends GraphicsProgram {
 			//Cell cell = board.getCellAt(e.getPoint());
 		while(cell instanceof MineCell&& turns==0){
 			board=new Board(20,30,10, this);
-			cell = (Cell) e.getSource();
+			for(int i=0;i<board.getCells().length;i++){
+				for(int x=0;x<board.getCells()[i].length;x++){
+					if( board.getCells()[i][x].contains(new GPoint(e.getPoint()))){
+					 cell=board.getCells()[i][x];
+					}
+				}
+			}
 		}
 		turns++;
 		board.revealCell(cell);
