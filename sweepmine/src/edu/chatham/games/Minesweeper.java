@@ -30,6 +30,7 @@ public class Minesweeper extends GraphicsProgram {
 	 * Initializes the board, which is also the GUI.
 	 */
 	public void init() {
+		setSize(60,60);
 		board= new Board(20,30,10, this);
 		add(board);
 	}
