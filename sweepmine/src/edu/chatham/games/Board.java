@@ -1,6 +1,9 @@
 package edu.chatham.games;
 
+import java.awt.Point;
+
 import acm.graphics.GCompound;
+import acm.graphics.GPoint;
 
 public class Board extends GCompound {
 private Cell[][] cellList;
@@ -48,6 +51,18 @@ private int rows, cols;
 		}
 	}
 	
+	public Cell getCellAt(Point loc){
+		Cell result;
+		for(int i=0;i<cellList.length;i++){
+			for(int x=0;x<cellList.length;x++){
+				if( cellList[i][x].contains(new GPoint(loc))){
+					result=cellList[i][x];
+				}
+			}
+		}
+		return null;
+	}
+	
 	public void blowAllUp(){
 		
 	}
@@ -57,11 +72,11 @@ private int rows, cols;
 	}
 	
 	public int getRows(){
-		return rows;
+		return rows-1;
 	}
 	
 	public int getCols(){
-		return cols;
+		return cols-1;
 	}
 	
 	public void flagCell(Cell cell){

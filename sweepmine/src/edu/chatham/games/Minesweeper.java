@@ -4,6 +4,10 @@ package edu.chatham.games;
 //easy 8x8-10 med 16x16-40 16x30-99
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
+
+import javax.swing.SwingUtilities;
+
+import acm.graphics.GPoint;
 import acm.program.GraphicsProgram;
 
 /**
@@ -33,20 +37,32 @@ public class Minesweeper extends GraphicsProgram {
 		board= new Board(20,30,10, this);
 		setSize((int)board.getWidth(),(int)board.getHeight());
 		add(board);
+		addMouseListeners();
 	}
 	
 	/**
 	 * Reveal a cell on a mouseclick.
 	 */
 	public void mouseClicked(MouseEvent e) {
-		if(e.equals(MouseEvent.BUTTON1)){
-		Cell cell = (Cell) e.getSource();
+		
+		if(SwingUtilities.isLeftMouseButton(e)){
+			Cell cell=null;
+		System.out.println("you clicked a cell");
+		for(int i=0;i<board.getCells().length;i++){
+			for(int x=0;x<board.getCells()[i].length;x++){
+				if( board.getCells()[i][x].contains(new GPoint(e.getPoint()))){
+				 cell=board.getCells()[i][x];
+				}
+			}
+		}
+			//Cell cell = board.getCellAt(e.getPoint());
 		while(cell instanceof MineCell&& turns==0){
 			board=new Board(20,30,10, this);
 			cell = (Cell) e.getSource();
 		}
 		turns++;
-		board.revealCell(cell);}
+		board.revealCell(cell);
+		}
 		if(e.equals(MouseEvent.BUTTON2)){
 			Cell cell = (Cell) e.getSource();
 			board.flagCell(cell);}
