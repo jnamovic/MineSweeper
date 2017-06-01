@@ -34,7 +34,7 @@ public class Minesweeper extends GraphicsProgram {
 	 * Initializes the board, which is also the GUI.
 	 */
 	public void init() {
-		board= new Board(20,30,10, this);
+		board= new Board(15,15,10, this);
 		setSize((int)board.getWidth(),(int)board.getHeight());
 		add(board);
 		addMouseListeners();
