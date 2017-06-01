@@ -1,10 +1,13 @@
 package edu.chatham.games;
 
+import java.awt.Color;
+
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 
 public class EmptyCell extends Cell {
 	int minesNear=0;
+	GLabel number;
 
 	public EmptyCell(int r, int c, Minesweeper d) 
 	{
@@ -34,7 +37,31 @@ public class EmptyCell extends Cell {
 				}	
 			}	
 		}
-		GLabel number = new GLabel(""+minesNear);
+		number = new GLabel(""+minesNear);
+		if(minesNear>0)
 		add(number,15,30);//add the mines-near number to the image
+		colorNum();
+	}
+	public void colorNum()
+	{
+		switch(minesNear)
+		{
+		case 1:number.setColor(Color.blue);
+		break;
+		case 2:number.setColor(Color.green);
+		break;
+		case 3: number.setColor(Color.red);
+		break;
+		case 4: number.setColor(Color.magenta);
+		break;
+		case 5: number.setColor(Color.orange);
+		break;
+		case 6: number.setColor(Color.cyan);
+		break;
+		case 7: number.setColor(Color.black);
+		break;
+		case 8: number.setColor(Color.gray);
+		break;
+		}
 	}
 }
