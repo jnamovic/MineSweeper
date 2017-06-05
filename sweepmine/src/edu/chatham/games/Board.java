@@ -85,4 +85,26 @@ private int rows, cols;
 	public void flagCell(Cell cell){
 		
 	}
+	public void generate(int x,int y, int mines){
+		int xPos=-1;
+		int yPos=-1;
+		int minenum=mines;
+		while(minenum>0)
+		{
+			do{
+			xPos = (int) (Math.random()*rows);
+			yPos = (int) (Math.random()*cols);
+			}while(cellList[xPos][yPos]!=null);
+			cellList[xPos][yPos]= new MineCell(xPos,yPos,game);
+			minenum--;
+				
+		}
+		for(int blag = 0;blag<cellList.length;blag++)
+			for(int glab=0;glab<cellList[blag].length;glab++)
+				if(cellList[blag][glab]==null)
+					cellList[blag][glab]=new EmptyCell(blag,glab,game);
+		for(int g=0; g<rows;g++)
+			for(int h=0;h<cols;h++)
+				add(cellList[g][h],CELL_WIDTH*g,CELL_HEIGHT*h);
+	}
 }
