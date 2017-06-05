@@ -46,7 +46,15 @@ private int rows, cols;
 //			for(int h=0;h<cols;h++)
 //				add(cellList[g][h],CELL_WIDTH*g,CELL_HEIGHT*h);
 	}
-	
+	public void paintIt()
+	{
+		for(int i=0; i<rows;i++)
+			for(int j = 0; j<cols;j++)
+			{
+				cellList[i][j]=new EmptyCell(i,j,game);
+				add(cellList[i][j],CELL_WIDTH*i,CELL_HEIGHT*j);
+			}
+	}
 	public void revealCell(Cell cell){
 		for(int x=0; x<cellList.length; x++)
 		{
@@ -101,9 +109,12 @@ private int rows, cols;
 					if(Math.random()<ratio&&cellList[i][j].getNum()==0&&!((i==x&&j==y)||(i==x-1&&j==y)||
 							(i==x-1&&j==y-1)||(i==x-1&&j==y+1)||(i==x&&j==y-1)||(i==x&&j==y+1)||(i==x+1&&j==y)||
 							(i==x+1&&j==y-1)||(i==x+1&&j==y+1))){
+						remove(cellList[i][j]);
 						cellList[i][j]=new MineCell(i,j,game);
+						add(cellList[i][j],CELL_WIDTH*i,CELL_HEIGHT*j);
 						left--;
 					}
 		}
+		
 }
 }

@@ -39,6 +39,7 @@ public class Minesweeper extends GraphicsProgram {
 	{
 		board= new Board(15,15,100, this);
 		setSize((int)board.getWidth(),(int)board.getHeight());
+		turns=0;
 		add(board);
 	}
 	public void init() {
