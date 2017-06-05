@@ -26,6 +26,10 @@ public class MineCell extends Cell{
 	{
 		return 1;
 	}
+	public void scream()
+	{
+		System.out.println("AHHHHHHHHHHHHHHH");
+	}
 	
 	
 }

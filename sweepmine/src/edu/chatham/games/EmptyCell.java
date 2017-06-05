@@ -68,4 +68,8 @@ public class EmptyCell extends Cell {
 	{
 		return 0;
 	}
+	public void scream()
+	{
+		System.out.println("I'm empty");
+	}
 }

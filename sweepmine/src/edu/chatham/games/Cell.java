@@ -89,6 +89,10 @@ public abstract class Cell extends GCompound {
 	{
 		return num;
 	}
+	public void scream()
+	{
+		
+	}
 	
 	/**
 	 * A printable representation of a Cell.
