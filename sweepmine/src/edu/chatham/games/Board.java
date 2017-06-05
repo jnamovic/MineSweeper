@@ -52,7 +52,7 @@ private int rows, cols;
 		{
 			for(int i=0; i<cellList[x].length; i++)
 			{	
-				cell.scream();
+				//cell.scream();
 				if(cell.equals(cellList[x][i])){
 					cellList[x][i].reveal();
 				}
