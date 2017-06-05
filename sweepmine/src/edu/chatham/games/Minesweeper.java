@@ -3,8 +3,10 @@ package edu.chatham.games;
 
 //easy 8x8-10 med 16x16-40 16x30-99
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
 import acm.graphics.GPoint;
@@ -33,17 +35,30 @@ public class Minesweeper extends GraphicsProgram {
 	/**
 	 * Initializes the board, which is also the GUI.
 	 */
-	public void init() {
-		board= new Board(15,15,50, this);
+	public void setup()
+	{
+		board= new Board(15,15,100, this);
 		setSize((int)board.getWidth(),(int)board.getHeight());
 		add(board);
+	}
+	public void init() {
+		setup();
 		addMouseListeners();
+		add(newGame = new JButton("New Game"), SOUTH);// adds the "new game" button to the southern border 
+		ActionListener buttonlistener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				removeAll();
+				setup();
+			}
+			};
+	
 	}
 	
 	/**
 	 * Reveal a cell on a mouseclick.
 	 */
-	public void mouseClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) {//make sure to add a block on new game until won or lost
 		
 		if(SwingUtilities.isLeftMouseButton(e)){
 			Cell cell=null;
@@ -91,5 +106,6 @@ public class Minesweeper extends GraphicsProgram {
 	// other declarations go here
 	private Board board;
 	private int turns=0;
+	JButton newGame;
 }
 
