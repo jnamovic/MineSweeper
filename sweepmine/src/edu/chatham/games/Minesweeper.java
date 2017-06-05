@@ -68,18 +68,22 @@ public class Minesweeper extends GraphicsProgram {
 		
 		for(int i=0;i<board.getCells().length;i++){
 			for(int x=0;x<board.getCells()[i].length;x++){
+				if( board.getCells()[i][x] instanceof MineCell) 
+				System.out.println("im a mine");
 				if( board.getCells()[i][x].contains(new GPoint(e.getPoint()))){
 				 cell=board.getCells()[i][x];
+				
 				 xLoc=i;
 				 yLoc=x;
+				 if(turns==0)
+					 board.generate(xLoc, yLoc,10);
+				 turns++;
+				 board.revealCell(cell);
 				}
 			}
 		}
 			//Cell cell = board.getCellAt(e.getPoint());
-		if(turns==0)
-			board.generate(xLoc, yLoc,10);
-		turns++;
-		board.revealCell(cell);
+		
 		}
 		if(e.equals(MouseEvent.BUTTON2)){
 			Cell cell = (Cell) e.getSource();
