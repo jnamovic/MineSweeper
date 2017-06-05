@@ -97,7 +97,8 @@ private int rows, cols;
 	}
 	
 	public void flagCell(Cell cell){
-		
+		cell.flagMe();
+		System.out.println("here");
 	}
 	public void generate(int x,int y, double mines){
 		double left=mines;

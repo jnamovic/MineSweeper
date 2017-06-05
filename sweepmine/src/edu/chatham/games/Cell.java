@@ -2,6 +2,7 @@ package edu.chatham.games;
 
 import java.awt.Color;
 import acm.graphics.GCompound;
+import acm.graphics.GImage;
 import acm.graphics.GRect;
 
 /**
@@ -16,11 +17,12 @@ public abstract class Cell extends GCompound {
 	public static final int CELL_WIDTH = 50;
 	public static final int CELL_HEIGHT = 50;
 	Minesweeper game;
+	GImage flag;
 	GRect rect;
 	
 	// the instance variables are protected for convenient access by the subclasses
 	protected int row, col,num;
-	protected boolean isRevealed;
+	protected boolean isRevealed,isFlagged;
 	protected int mineCount;
 	
 	/**
@@ -39,6 +41,11 @@ public abstract class Cell extends GCompound {
 		row = r;
 		col = c;
 		isRevealed = false;
+		isFlagged=false;
+		flag = new GImage("flag.png");
+		flag.scale(CELL_WIDTH/flag.getWidth(),CELL_HEIGHT/flag.getHeight());
+		add(flag);
+		flag.setVisible(false);
 	}
 	
 	/**
@@ -89,9 +96,11 @@ public abstract class Cell extends GCompound {
 	{
 		return num;
 	}
-	public void scream()
+	public void flagMe()
 	{
-		
+		isFlagged=!isFlagged;
+		flag.setVisible(isFlagged);
+		System.out.println("I'm in");
 	}
 	
 	/**

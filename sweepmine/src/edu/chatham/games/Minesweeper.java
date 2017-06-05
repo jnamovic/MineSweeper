@@ -85,6 +85,7 @@ public class Minesweeper extends GraphicsProgram {
 		}
 		if(e.equals(MouseEvent.BUTTON2)){
 			Cell cell = (Cell) e.getSource();
+			System.out.println("Right click");
 			board.flagCell(cell);}
 	}
 	
