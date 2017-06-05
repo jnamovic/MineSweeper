@@ -72,7 +72,6 @@ public class Minesweeper extends GraphicsProgram {
 				System.out.println("im a mine");
 				if( board.getCells()[i][x].contains(new GPoint(e.getPoint()))){
 				 cell=board.getCells()[i][x];
-				
 				 xLoc=i;
 				 yLoc=x;
 				 if(turns==0)
