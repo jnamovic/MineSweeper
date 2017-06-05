@@ -7,8 +7,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.SwingUtilities;
 
+import APCS2016Proj06Solitaire.Difficulty;
 import acm.graphics.GPoint;
 import acm.program.GraphicsProgram;
 
@@ -37,15 +39,18 @@ public class Minesweeper extends GraphicsProgram {
 	 */
 	public void setup()
 	{
-		board= new Board(15,15,100, this);
+		initDifficulty();//sets up the difficulty combobox
+		makeBoard(getDifficulty());
 		setSize((int)board.getWidth(),(int)board.getHeight());
 		turns=0;
-		add(board);
+		
+		
 	}
 	public void init() {
 		setup();
 		addMouseListeners();
 		add(newGame = new JButton("New Game"), SOUTH);// adds the "new game" button to the southern border 
+	    add(difficult, SOUTH);//adds the difficulty combobox to the southern border
 		ActionListener buttonlistener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -55,6 +60,11 @@ public class Minesweeper extends GraphicsProgram {
 			};
 			newGame.addActionListener(buttonlistener);
 	
+	}
+	public void makeBoard(Difficulty_ diff)
+	{
+		board= new Board(diff, this);
+		add(board);
 	}
 	
 	/**
@@ -113,9 +123,27 @@ public class Minesweeper extends GraphicsProgram {
 	public Board getBoard(){
 		return board;
 	}
+	private void initDifficulty() {
+		difficult = new JComboBox<String>();
+		difficult.addItem("Beginner");//adds the beginner option to the combo box
+		difficult.addItem("Intermediate");//adds the intermediate option to the combo box
+		difficult.addItem("Expert");//adds the expert option to the combo box
+		difficult.setEditable(false);
+		difficult.setSelectedItem("Beginner");//sets the default value of the combo box to intermediate
+	} 
+	
+	private Difficulty_ getDifficulty() {
+		String name = (String) difficult.getSelectedItem();// sets name equal to the current value of the difficulty combo box
+		if (name.equals("Beginner")) return Difficulty_.BEGINNER;//returns beginner difficulty if the combo box is set to beginner
+		if (name.equals("Intermediate")) return Difficulty_.INTERMEDIATE;//returns intermediate difficulty if the combo box is set to intermediate
+		if (name.equals("Expert")) return Difficulty_.EXPERT;//returns expert difficulty if the combo box is set to expert
+		
+		return Difficulty_.INTERMEDIATE;
+	}
 	// other declarations go here
 	private Board board;
 	private int turns=0;
 	JButton newGame;
+	JComboBox<String> difficult;
 }
 

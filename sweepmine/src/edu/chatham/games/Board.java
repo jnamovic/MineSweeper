@@ -10,17 +10,33 @@ private Cell[][] cellList;
 private Minesweeper game;	
 public static final int CELL_WIDTH = 50;
 public static final int CELL_HEIGHT = 50;
-private int rows, cols;
-	public Board(int x, int y, int mines, Minesweeper sweep)
+private int rows, cols,mines;
+	public Board(Difficulty_ diff, Minesweeper sweep)
 	{
 		super();
 		game=sweep;
-		cellList=new Cell[x][y];
+		switch (diff)
+		{
+		case BEGINNER: 
+			rows=9;
+			cols=9;
+			mines=10;
+			break;
+		case INTERMEDIATE:
+			rows=16;
+			cols=16;
+			mines=40;
+			break;
+		case EXPERT:
+			rows=32;
+			cols=16;
+			mines=99;
+		}
+		cellList=new Cell[rows][cols];
 		//System.out.println(cellList[x-1][y-1]);
-		int minenum=mines;
-		int space=x*y;
-		rows=x;
-		cols=y;
+		
+		int space=rows*cols;
+		
 		for(int i=0; i<rows;i++)
 			for(int j = 0; j<cols;j++)
 			{
