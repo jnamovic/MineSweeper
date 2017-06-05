@@ -35,7 +35,7 @@ public abstract class Cell extends GCompound {
 		super();
 		game=d;
 		rect = new GRect(CELL_WIDTH, CELL_WIDTH);
-		rect.setFillColor(Color.BLUE);
+		rect.setFillColor(Color.gray);
 		rect.setFilled(true);
 		add(rect, 0, 0);
 		row = r;
@@ -100,7 +100,7 @@ public abstract class Cell extends GCompound {
 	{
 		isFlagged=!isFlagged;
 		flag.setVisible(isFlagged);
-		System.out.println("I'm in");
+	
 	}
 	
 	/**

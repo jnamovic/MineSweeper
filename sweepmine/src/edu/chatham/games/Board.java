@@ -98,8 +98,7 @@ private int rows, cols;
 	
 	public void flagCell(Cell cell){
 		cell.flagMe();
-		System.out.println("here");
-	}
+		}
 	public void generate(int x,int y, double mines){
 		double left=mines;
 		double ratio= mines/ (rows*cols);
@@ -118,4 +117,23 @@ private int rows, cols;
 		}
 		
 }
+	public boolean allFlagged()
+	{
+		for(int i=0;i<rows;i++)
+			for(int j=0;j<cols;j++){
+				if(cellList[i][j].getNum()==0&&cellList[i][j].isFlagged)
+					return false;
+				if(cellList[i][j].getNum()==1&&!cellList[i][j].isFlagged)
+				 	return false;
+			}
+		return true;
+	}
+	public boolean allRevealed()
+	{
+		for(int i=0;i<rows;i++)
+			for(int j=0;j<cols;j++)
+				if(cellList[i][j].getNum()==0&&!cellList[i][j].isRevealed())
+					return false;
+		return true;
+	}
 }

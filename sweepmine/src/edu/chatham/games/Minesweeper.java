@@ -74,7 +74,10 @@ public class Minesweeper extends GraphicsProgram {
 				 xLoc=i;
 				 yLoc=x;
 				 if(turns==0)
+				 {
 					 board.generate(xLoc, yLoc,10);
+					 newGame.setEnabled(false);
+				 }
 				 turns++;
 				 board.revealCell(cell);
 				}
@@ -83,10 +86,17 @@ public class Minesweeper extends GraphicsProgram {
 			//Cell cell = board.getCellAt(e.getPoint());
 		
 		}
-		if(e.equals(MouseEvent.BUTTON2)){
-			Cell cell = (Cell) e.getSource();
-			System.out.println("Right click");
+		if(SwingUtilities.isRightMouseButton(e)){
+			Cell cell=null;
+			for(int i=0;i<board.getCells().length;i++)
+			for(int x=0;x<board.getCells()[i].length;x++)
+				if( board.getCells()[i][x].contains(new GPoint(e.getPoint())))
+				 cell=board.getCells()[i][x];
 			board.flagCell(cell);}
+		if(board.allFlagged()||board.allRevealed())
+		{
+			newGame.setEnabled(true);
+		}
 	}
 	
 	/** 
