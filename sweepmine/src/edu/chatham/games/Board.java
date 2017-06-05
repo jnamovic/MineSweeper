@@ -96,8 +96,12 @@ private int rows, cols,mines;
 		return null;
 	}
 	
-	public void blowAllUp(){
-		
+	public void blowAllUp()
+	{
+		for(int i=0;i<rows;i++)
+			for(int j=0;j<cols;j++)
+				if(cellList[i][j].isRevealed()==false)
+					cellList[i][j].reveal();
 	}
 	
 	public Cell[][] getCells(){
@@ -151,5 +155,13 @@ private int rows, cols,mines;
 				if(cellList[i][j].getNum()==0&&!cellList[i][j].isRevealed())
 					return false;
 		return true;
+	}
+	public boolean blownUpSir()
+	{
+		for(int i=0;i<rows;i++)
+			for(int j=0;j<cols;j++)
+				if(cellList[i][j].getNum()==1&&cellList[i][j].isRevealed())
+					return true;
+		return false;
 	}
 }

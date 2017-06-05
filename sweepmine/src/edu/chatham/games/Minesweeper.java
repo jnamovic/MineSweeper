@@ -107,6 +107,10 @@ public class Minesweeper extends GraphicsProgram {
 		{
 			newGame.setEnabled(true);
 		}
+		if(board.blownUpSir())
+		{
+			newGame.setEnabled(true);
+		}
 	}
 	
 	/** 
