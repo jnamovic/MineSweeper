@@ -23,7 +23,10 @@ private int rows, cols;
 		cols=y;
 		for(int i=0; i<rows;i++)
 			for(int j = 0; j<cols;j++)
+			{
 				cellList[i][j]=new EmptyCell(i,j,game);
+				add(cellList[i][j],CELL_WIDTH*i,CELL_HEIGHT*j);
+			}
 		
 //		while(minenum>0)
 //		{
@@ -89,7 +92,7 @@ private int rows, cols;
 	}
 	public void generate(int x,int y, double mines){
 		double left=mines;
-		double ratio= rows*cols/mines;
+		double ratio= mines/ (rows*cols);
 		while(left>0)
 		{
 			for(int i=0; i<rows;i++)
@@ -98,7 +101,7 @@ private int rows, cols;
 							(i==x-1&&j==y-1)||(i==x-1&&j==y+1)||(i==x&&j==y-1)||(i==x&&j==y+1)||(i==x+1&&j==y)||
 							(i==x+1&&j==y-1)||(i==x+1&&j==y+1))){
 						cellList[i][j]=new MineCell(i,j,game);
-						mines--;
+						left--;
 					}
 		}
 }

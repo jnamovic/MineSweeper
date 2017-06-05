@@ -52,6 +52,7 @@ public class Minesweeper extends GraphicsProgram {
 				setup();
 			}
 			};
+			newGame.addActionListener(buttonlistener);
 	
 	}
 	
@@ -61,26 +62,22 @@ public class Minesweeper extends GraphicsProgram {
 	public void mouseClicked(MouseEvent e) {//make sure to add a block on new game until won or lost
 		
 		if(SwingUtilities.isLeftMouseButton(e)){
+			int xLoc=-2;
+			int yLoc=-2;
 			Cell cell=null;
 		
 		for(int i=0;i<board.getCells().length;i++){
 			for(int x=0;x<board.getCells()[i].length;x++){
 				if( board.getCells()[i][x].contains(new GPoint(e.getPoint()))){
 				 cell=board.getCells()[i][x];
+				 xLoc=i;
+				 yLoc=x;
 				}
 			}
 		}
 			//Cell cell = board.getCellAt(e.getPoint());
-		while(cell instanceof MineCell&& turns==0){
-			board=new Board(20,30,10, this);
-			for(int i=0;i<board.getCells().length;i++){
-				for(int x=0;x<board.getCells()[i].length;x++){
-					if( board.getCells()[i][x].contains(new GPoint(e.getPoint()))){
-					 cell=board.getCells()[i][x];
-					}
-				}
-			}
-		}
+		if(turns==0)
+			board.generate(xLoc, yLoc,10);
 		turns++;
 		board.revealCell(cell);
 		}
