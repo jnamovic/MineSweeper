@@ -21,25 +21,27 @@ private int rows, cols;
 		int space=x*y;
 		rows=x;
 		cols=y;
-		int xPos=-1;
-		int yPos=-1;
-		while(minenum>0)
-		{
-			do{
-			xPos = (int) (Math.random()*rows);
-			yPos = (int) (Math.random()*cols);
-			}while(cellList[xPos][yPos]!=null);
-			cellList[xPos][yPos]= new MineCell(xPos,yPos,game);
-			minenum--;
-				
-		}
-		for(int blag = 0;blag<cellList.length;blag++)
-			for(int glab=0;glab<cellList[blag].length;glab++)
-				if(cellList[blag][glab]==null)
-					cellList[blag][glab]=new EmptyCell(blag,glab,game);
-		for(int g=0; g<rows;g++)
-			for(int h=0;h<cols;h++)
-				add(cellList[g][h],CELL_WIDTH*g,CELL_HEIGHT*h);
+		for(int i=0; i<rows;i++)
+			for(int j = 0; j<cols;j++)
+				cellList[i][j]=new EmptyCell(i,j,game);
+		
+//		while(minenum>0)
+//		{
+//			do{
+//			xPos = (int) (Math.random()*rows);
+//			yPos = (int) (Math.random()*cols);
+//			}while(cellList[xPos][yPos]!=null);
+//			cellList[xPos][yPos]= new MineCell(xPos,yPos,game);
+//			minenum--;
+//				
+//		}
+//		for(int blag = 0;blag<cellList.length;blag++)
+//			for(int glab=0;glab<cellList[blag].length;glab++)
+//				if(cellList[blag][glab]==null)
+//					cellList[blag][glab]=new EmptyCell(blag,glab,game);
+//		for(int g=0; g<rows;g++)
+//			for(int h=0;h<cols;h++)
+//				add(cellList[g][h],CELL_WIDTH*g,CELL_HEIGHT*h);
 	}
 	
 	public void revealCell(Cell cell){
@@ -85,26 +87,19 @@ private int rows, cols;
 	public void flagCell(Cell cell){
 		
 	}
-	public void generate(int x,int y, int mines){
-		int xPos=-1;
-		int yPos=-1;
-		int minenum=mines;
-		while(minenum>0)
+	public void generate(int x,int y, double mines){
+		double left=mines;
+		double ratio= rows*cols/mines;
+		while(left>0)
 		{
-			do{
-			xPos = (int) (Math.random()*rows);
-			yPos = (int) (Math.random()*cols);
-			}while(cellList[xPos][yPos]!=null);
-			cellList[xPos][yPos]= new MineCell(xPos,yPos,game);
-			minenum--;
-				
+			for(int i=0; i<rows;i++)
+				for(int j = 0; j<cols;j++)
+					if(Math.random()<ratio&&cellList[i][j].getNum()==0&&!((i==x&&j==y)||(i==x-1&&j==y)||
+							(i==x-1&&j==y-1)||(i==x-1&&j==y+1)||(i==x&&j==y-1)||(i==x&&j==y+1)||(i==x+1&&j==y)||
+							(i==x+1&&j==y-1)||(i==x+1&&j==y+1))){
+						cellList[i][j]=new MineCell(i,j,game);
+						mines--;
+					}
 		}
-		for(int blag = 0;blag<cellList.length;blag++)
-			for(int glab=0;glab<cellList[blag].length;glab++)
-				if(cellList[blag][glab]==null)
-					cellList[blag][glab]=new EmptyCell(blag,glab,game);
-		for(int g=0; g<rows;g++)
-			for(int h=0;h<cols;h++)
-				add(cellList[g][h],CELL_WIDTH*g,CELL_HEIGHT*h);
-	}
+}
 }

@@ -22,6 +22,10 @@ public class MineCell extends Cell{
 		game.gameEnd();
 		//add boom every time it's a mime////
 	}
+	public int getNum()
+	{
+		return 1;
+	}
 	
 	
 }

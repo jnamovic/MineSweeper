@@ -64,4 +64,8 @@ public class EmptyCell extends Cell {
 		break;
 		}
 	}
+	public int getNum()
+	{
+		return 0;
+	}
 }
