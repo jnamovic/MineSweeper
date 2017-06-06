@@ -63,9 +63,9 @@ public class Minesweeper extends GraphicsProgram {
 				setup();
 				messages.setText("Good Luck!");
 			}
-			};
-			newGame.addActionListener(buttonlistener);
-			run();
+		};
+		newGame.addActionListener(buttonlistener);
+		run();
 	}
 	public void run()
 	{
@@ -101,18 +101,20 @@ public class Minesweeper extends GraphicsProgram {
 		for(int i=0;i<board.getCells().length;i++){
 			for(int x=0;x<board.getCells()[i].length;x++){
 				if( board.getCells()[i][x].contains(new GPoint(e.getPoint()))){
-				 cell=board.getCells()[i][x];
-				 xLoc=i;
-				 yLoc=x;
-				 if(turns==0)
-				 {
-					 board.generate(xLoc, yLoc,10);
-					 newGame.setEnabled(false);
-					 startTime = System.currentTimeMillis();
-					 keepCounting=true;
-				 }
-				 turns++;
-				 board.revealCell(cell);
+					cell=board.getCells()[i][x];
+					xLoc=i;
+					yLoc=x;
+					if(turns==0)
+					{
+						board.generate(xLoc, yLoc,10);
+						newGame.setEnabled(false);
+						startTime = System.currentTimeMillis();
+						keepCounting=true;
+					}
+					if(!cell.getflag()){
+						turns++;
+						board.revealCell(cell);
+					}
 				}
 			}
 		}
