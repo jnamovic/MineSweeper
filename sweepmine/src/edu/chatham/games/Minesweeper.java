@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 import APCS2016Proj06Solitaire.Difficulty;
@@ -42,6 +43,7 @@ public class Minesweeper extends GraphicsProgram {
 		initDifficulty();//sets up the difficulty combobox
 		makeBoard(getDifficulty());
 		setSize((int)board.getWidth(),(int)board.getHeight());
+		messages.setText("Good Luck!");
 		turns=0;
 		
 		
@@ -51,6 +53,7 @@ public class Minesweeper extends GraphicsProgram {
 		addMouseListeners();
 		add(newGame = new JButton("New Game"), SOUTH);// adds the "new game" button to the southern border 
 	    add(difficult, SOUTH);//adds the difficulty combobox to the southern border
+	    add(messages = new JLabel("Welcome to minesweeper"), NORTH);
 		ActionListener buttonlistener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -106,11 +109,12 @@ public class Minesweeper extends GraphicsProgram {
 		if(board.allFlagged()||board.allRevealed())
 		{
 			newGame.setEnabled(true);
+			messages.setText("Congratulations, you won!");
 		}
+		
 		if(board.blownUpSir())
 		{
-			newGame.setEnabled(true);
-			board.blowAllUp();
+			gameEnd();
 			
 		}
 	}
@@ -124,6 +128,8 @@ public class Minesweeper extends GraphicsProgram {
 	
 	public void gameEnd(){
 		board.blowAllUp();
+		newGame.setEnabled(true);
+		messages.setText("You blew up!");
 	}
 
 	public Board getBoard(){
@@ -150,6 +156,7 @@ public class Minesweeper extends GraphicsProgram {
 	private Board board;
 	private int turns=0;
 	JButton newGame;
+	JLabel messages;
 	JComboBox<String> difficult;
 }
 

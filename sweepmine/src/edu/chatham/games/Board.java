@@ -103,7 +103,6 @@ private int rows, cols,mines;
 				if(!cellList[i][j].isRevealed())
 				{
 					cellList[i][j].reveal();
-					
 				}
 	}
 	
@@ -163,9 +162,8 @@ private int rows, cols,mines;
 	{
 		for(int i=0;i<rows;i++)
 			for(int j=0;j<cols;j++)
-				if(cellList[i][j].isRevealed()&&cellList[i][j].isMine())
+				if(cellList[i][j].isMine()&&cellList[i][j].isRevealed)
 				{
-					System.out.println("mine tripped");
 					return true;
 				}
 			return false;
