@@ -35,9 +35,7 @@ private int rows, cols,mines;
 		cellList=new Cell[rows][cols];
 		//System.out.println(cellList[x-1][y-1]);
 		
-		int space=rows*cols;
-		
-		for(int i=0; i<rows;i++)
+			for(int i=0; i<rows;i++)
 			for(int j = 0; j<cols;j++)
 			{
 				cellList[i][j]=new EmptyCell(i,j,game);
