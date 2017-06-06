@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-import APCS2016Proj06Solitaire.Difficulty;
+
 import acm.graphics.GPoint;
 import acm.program.GraphicsProgram;
 
