@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 import APCS2016Proj06Solitaire.Difficulty;
 import acm.graphics.GPoint;
@@ -28,6 +29,7 @@ public class Minesweeper extends GraphicsProgram {
 	 */
 	public static void main(String[] args) {
 		(new Minesweeper()).start(args);
+		
 	}
 	
 	/**
@@ -43,10 +45,9 @@ public class Minesweeper extends GraphicsProgram {
 		initDifficulty();//sets up the difficulty combobox
 		makeBoard(getDifficulty());
 		setSize((int)board.getWidth(),(int)board.getHeight());
-		messages.setText("Good Luck!");
 		turns=0;
-		
-		
+		startTime = System.currentTimeMillis();
+			
 	}
 	public void init() {
 		setup();
@@ -54,15 +55,32 @@ public class Minesweeper extends GraphicsProgram {
 		add(newGame = new JButton("New Game"), SOUTH);// adds the "new game" button to the southern border 
 	    add(difficult, SOUTH);//adds the difficulty combobox to the southern border
 	    add(messages = new JLabel("Welcome to minesweeper"), NORTH);
+	    add(timer = new JLabel("0"),NORTH);
 		ActionListener buttonlistener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
 				removeAll();
 				setup();
+				messages.setText("Good Luck!");
 			}
 			};
 			newGame.addActionListener(buttonlistener);
-	
+			run();
+	}
+	public void run()
+	{
+		while(true)
+		{
+			if(keepCounting)
+			{
+				long totalSeconds= (System.currentTimeMillis() - startTime)/1000;
+				int dispSecond = (int) (totalSeconds%60);
+				int dispMin = (int) (totalSeconds/60);
+				System.out.println(dispMin);
+				timer.setText(dispMin + ":" + dispMin);
+			}
+				
+		}
 	}
 	public void makeBoard(Difficulty_ diff)
 	{
@@ -90,6 +108,8 @@ public class Minesweeper extends GraphicsProgram {
 				 {
 					 board.generate(xLoc, yLoc,10);
 					 newGame.setEnabled(false);
+					 startTime = System.currentTimeMillis();
+					 keepCounting=true;
 				 }
 				 turns++;
 				 board.revealCell(cell);
@@ -108,14 +128,16 @@ public class Minesweeper extends GraphicsProgram {
 			board.flagCell(cell);}
 		if(board.allFlagged()||board.allRevealed())
 		{
+			gameEnd();
 			newGame.setEnabled(true);
 			messages.setText("Congratulations, you won!");
 		}
 		
 		if(board.blownUpSir())
 		{
+			board.blowAllUp();
 			gameEnd();
-			
+			messages.setText("You blew up!");
 		}
 	}
 	
@@ -127,9 +149,9 @@ public class Minesweeper extends GraphicsProgram {
 	}
 	
 	public void gameEnd(){
-		board.blowAllUp();
+		
 		newGame.setEnabled(true);
-		messages.setText("You blew up!");
+		keepCounting=false;
 	}
 
 	public Board getBoard(){
@@ -156,7 +178,9 @@ public class Minesweeper extends GraphicsProgram {
 	private Board board;
 	private int turns=0;
 	JButton newGame;
-	JLabel messages;
+	JLabel messages,timer;
 	JComboBox<String> difficult;
+	long startTime;
+	boolean keepCounting;
 }
 
