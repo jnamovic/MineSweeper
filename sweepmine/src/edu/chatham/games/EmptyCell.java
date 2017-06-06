@@ -64,9 +64,9 @@ public class EmptyCell extends Cell {
 		break;
 		}
 	}
-	public int getNum()
+	public boolean isMine()
 	{
-		return 0;
+		return false;
 	}
 	public void scream()
 	{

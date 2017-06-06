@@ -21,8 +21,8 @@ public abstract class Cell extends GCompound {
 	GRect rect;
 	
 	// the instance variables are protected for convenient access by the subclasses
-	protected int row, col,num;
-	protected boolean isRevealed,isFlagged;
+	protected int row, col;
+	protected boolean isRevealed,isFlagged,miner;
 	protected int mineCount;
 	
 	/**
@@ -92,9 +92,9 @@ public abstract class Cell extends GCompound {
 	public int getCol() {
 		return col;
 	}
-	public int getNum()
+	public boolean isMine()
 	{
-		return num;
+		return miner;
 	}
 	public void flagMe()
 	{

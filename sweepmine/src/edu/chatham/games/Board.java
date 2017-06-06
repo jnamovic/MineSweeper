@@ -100,8 +100,11 @@ private int rows, cols,mines;
 	{
 		for(int i=0;i<rows;i++)
 			for(int j=0;j<cols;j++)
-				if(cellList[i][j].isRevealed()==false)
+				if(!cellList[i][j].isRevealed())
+				{
 					cellList[i][j].reveal();
+					
+				}
 	}
 	
 	public Cell[][] getCells(){
@@ -126,7 +129,7 @@ private int rows, cols,mines;
 		{
 			for(int i=0; i<rows;i++)
 				for(int j = 0; j<cols;j++)
-					if(Math.random()<ratio&&cellList[i][j].getNum()==0&&!((i==x&&j==y)||(i==x-1&&j==y)||
+					if(Math.random()<ratio&&!cellList[i][j].isMine()&&!((i==x&&j==y)||(i==x-1&&j==y)||
 							(i==x-1&&j==y-1)||(i==x-1&&j==y+1)||(i==x&&j==y-1)||(i==x&&j==y+1)||(i==x+1&&j==y)||
 							(i==x+1&&j==y-1)||(i==x+1&&j==y+1))){
 						remove(cellList[i][j]);
@@ -141,9 +144,9 @@ private int rows, cols,mines;
 	{
 		for(int i=0;i<rows;i++)
 			for(int j=0;j<cols;j++){
-				if(cellList[i][j].getNum()==0&&cellList[i][j].isFlagged)
+				if(!cellList[i][j].isMine()&&cellList[i][j].isFlagged)
 					return false;
-				if(cellList[i][j].getNum()==1&&!cellList[i][j].isFlagged)
+				if(cellList[i][j].isMine()&&!cellList[i][j].isFlagged)
 				 	return false;
 			}
 		return true;
@@ -152,7 +155,7 @@ private int rows, cols,mines;
 	{
 		for(int i=0;i<rows;i++)
 			for(int j=0;j<cols;j++)
-				if(cellList[i][j].getNum()==0&&!cellList[i][j].isRevealed())
+				if(!cellList[i][j].isMine()&&!cellList[i][j].isRevealed())
 					return false;
 		return true;
 	}
@@ -160,8 +163,11 @@ private int rows, cols,mines;
 	{
 		for(int i=0;i<rows;i++)
 			for(int j=0;j<cols;j++)
-				if(cellList[i][j].getNum()==1&&cellList[i][j].isRevealed())
+				if(cellList[i][j].isRevealed()&&cellList[i][j].isMine())
+				{
+					System.out.println("mine tripped");
 					return true;
-		return false;
+				}
+			return false;
 	}
 }

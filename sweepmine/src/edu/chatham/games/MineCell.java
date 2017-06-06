@@ -21,9 +21,9 @@ public class MineCell extends Cell{
 		rect.setFilled(false);
 		//add boom every time it's a mime////
 	}
-	public int getNum()
+	public boolean isMine()
 	{
-		return 1;
+		return true;
 	}
 	public void scream()
 	{
