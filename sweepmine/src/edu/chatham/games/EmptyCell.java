@@ -7,7 +7,7 @@ import acm.graphics.GLabel;
 
 public class EmptyCell extends Cell {
 	int minesNear=0;
-	GLabel number;
+	GImage number;
 
 	public EmptyCell(int r, int c, Minesweeper d) 
 	{
@@ -37,30 +37,35 @@ public class EmptyCell extends Cell {
 				}	
 			}	
 		}
-		number = new GLabel(""+minesNear);
 		if(minesNear>0)
-		add(number,15,30);//add the mines-near number to the image
-		colorNum();
+		{
+			colorNum();
+			number.scale(getWidth()/number.getWidth(),getHeight()/number.getHeight());
+		add(number);
+		//add the mines-near number to the image
+		
+		}
+		
 	}
 	public void colorNum()
 	{
 		switch(minesNear)
 		{
-		case 1:number.setColor(Color.blue);
+		case 1:number = new GImage("1.png");
 		break;
-		case 2:number.setColor(Color.green);
+		case 2:number = new GImage("2.png");
 		break;
-		case 3: number.setColor(Color.red);
+		case 3: number = new GImage("3.png");
 		break;
-		case 4: number.setColor(Color.magenta);
+		case 4: number = new GImage("4.png");
 		break;
-		case 5: number.setColor(Color.orange);
+		case 5: number = new GImage("5.png");
 		break;
-		case 6: number.setColor(Color.cyan);
+		case 6: number = new GImage("6.png");
 		break;
-		case 7: number.setColor(Color.black);
+		case 7: number = new GImage("7.png");
 		break;
-		case 8: number.setColor(Color.gray);
+		case 8: number = new GImage("8.png");
 		break;
 		}
 	}
