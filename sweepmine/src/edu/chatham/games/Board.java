@@ -8,8 +8,8 @@ import acm.graphics.GPoint;
 public class Board extends GCompound {
 private Cell[][] cellList;
 private Minesweeper game;	
-public static final int CELL_WIDTH = 50;
-public static final int CELL_HEIGHT = 50;
+public static final int CELL_WIDTH = 35;
+public static final int CELL_HEIGHT = 35;
 private int rows, cols,mines;
 	public Board(Difficulty_ diff, Minesweeper sweep)
 	{
@@ -31,6 +31,7 @@ private int rows, cols,mines;
 			rows=32;
 			cols=16;
 			mines=99;
+			break;
 		}
 		cellList=new Cell[rows][cols];
 		//System.out.println(cellList[x-1][y-1]);
@@ -119,21 +120,31 @@ private int rows, cols,mines;
 	public void flagCell(Cell cell){
 		cell.flagMe();
 		}
-	public void generate(int x,int y, double mines){
+	public void generate(int x,int y){
 		double left=mines;
-		double ratio= mines/ (rows*cols);
+		double ratio= mines/1./ (rows*cols);
 		while(left>0)
 		{
-			for(int i=0; i<rows;i++)
-				for(int j = 0; j<cols;j++)
-					if(Math.random()<ratio&&!cellList[i][j].isMine()&&!((i==x&&j==y)||(i==x-1&&j==y)||
+			for(int i=0; i<rows;i++){
+				for(int j = 0; j<cols;j++){
+					double rando = Math.random();
+					if(rando<ratio&&!cellList[i][j].isMine()&&!((i==x&&j==y)||(i==x-1&&j==y)||
 							(i==x-1&&j==y-1)||(i==x-1&&j==y+1)||(i==x&&j==y-1)||(i==x&&j==y+1)||(i==x+1&&j==y)||
 							(i==x+1&&j==y-1)||(i==x+1&&j==y+1))){
 						remove(cellList[i][j]);
 						cellList[i][j]=new MineCell(i,j,game);
 						add(cellList[i][j],CELL_WIDTH*i,CELL_HEIGHT*j);
 						left--;
+						if(left==0)
+							break;
+						System.out.println(left);
+						System.out.println(mines);
 					}
+					//System.out.println(rando + " " + ratio);
+				}
+				if(left==0)
+					break;
+			}
 		}
 		
 }

@@ -14,8 +14,8 @@ import acm.graphics.GRect;
 @SuppressWarnings("serial")
 public abstract class Cell extends GCompound {
 
-	public static final int CELL_WIDTH = 50;
-	public static final int CELL_HEIGHT = 50;
+	public static final int CELL_WIDTH = 35;
+	public static final int CELL_HEIGHT = 35;
 	Minesweeper game;
 	GImage flag;
 	GRect rect;

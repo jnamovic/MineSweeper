@@ -118,7 +118,7 @@ public class Minesweeper extends GraphicsProgram {
 				 yLoc=x;
 				 if(turns==0)
 				 {
-					 board.generate(xLoc, yLoc,10);
+					 board.generate(xLoc, yLoc);
 					 newGame.setEnabled(false);
 					 startTime = System.currentTimeMillis();
 					 keepCounting=true;
@@ -126,21 +126,6 @@ public class Minesweeper extends GraphicsProgram {
 				 turns++;
 				 if(!cell.isFlagged)
 				 board.revealCell(cell);
-
-					cell=board.getCells()[i][x];
-					xLoc=i;
-					yLoc=x;
-					if(turns==0)
-					{
-						board.generate(xLoc, yLoc,10);
-						newGame.setEnabled(false);
-						startTime = System.currentTimeMillis();
-						keepCounting=true;
-					}
-					if(!cell.getflag()){
-						turns++;
-						board.revealCell(cell);
-					}
 
 				}
 			}
@@ -154,6 +139,7 @@ public class Minesweeper extends GraphicsProgram {
 			for(int x=0;x<board.getCells()[i].length;x++)
 				if( board.getCells()[i][x].contains(new GPoint(e.getPoint())))
 				 cell=board.getCells()[i][x];
+			if(!cell.isRevealed())
 			board.flagCell(cell);}
 		if((board.allFlagged()||board.allRevealed())&&turns>0)
 		{
