@@ -44,7 +44,7 @@ public class Minesweeper extends GraphicsProgram {
 	{
 		//sets up the difficulty combobox
 		makeBoard(getDifficulty());
-		setSize((int)board.getWidth(),(int)board.getHeight());
+		setSize((int)board.getWidth()+10,(int)board.getHeight()+90);
 		turns=0;
 		startTime = System.currentTimeMillis();
 		gameDone=false;
