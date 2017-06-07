@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-import APCS2016Proj06Solitaire.Difficulty;
+
 import acm.graphics.GPoint;
 import acm.program.GraphicsProgram;
 
@@ -66,10 +66,15 @@ public class Minesweeper extends GraphicsProgram {
 				messages.setText("Good Luck!");
 				timer.setText("0:00");
 			}
+
 			};
 			newGame.addActionListener(buttonlistener);
 			
-	}
+
+		}
+	
+
+	
 	public void run()
 	{
 		while(true)
@@ -107,6 +112,7 @@ public class Minesweeper extends GraphicsProgram {
 		for(int i=0;i<board.getCells().length;i++){
 			for(int x=0;x<board.getCells()[i].length;x++){
 				if( board.getCells()[i][x].contains(new GPoint(e.getPoint()))){
+
 				 cell=board.getCells()[i][x];
 				 xLoc=i;
 				 yLoc=x;
@@ -120,6 +126,22 @@ public class Minesweeper extends GraphicsProgram {
 				 turns++;
 				 if(!cell.isFlagged)
 				 board.revealCell(cell);
+
+					cell=board.getCells()[i][x];
+					xLoc=i;
+					yLoc=x;
+					if(turns==0)
+					{
+						board.generate(xLoc, yLoc,10);
+						newGame.setEnabled(false);
+						startTime = System.currentTimeMillis();
+						keepCounting=true;
+					}
+					if(!cell.getflag()){
+						turns++;
+						board.revealCell(cell);
+					}
+
 				}
 			}
 		}

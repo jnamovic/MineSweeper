@@ -102,6 +102,9 @@ public abstract class Cell extends GCompound {
 		flag.setVisible(isFlagged);
 	
 	}
+	public boolean getflag(){
+		return isFlagged;
+	}
 	
 	/**
 	 * A printable representation of a Cell.

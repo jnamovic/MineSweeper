@@ -7,7 +7,7 @@ import java.applet.AudioClip;
 public class MineCell extends Cell{
 
 	AudioClip clip;
-	Sound boomer;
+//	Sound boomer;
 	public MineCell(int r, int c, Minesweeper d) 
 	{
 		super(r, c, d);
@@ -15,14 +15,14 @@ public class MineCell extends Cell{
 		mineI.scale(CELL_WIDTH/mineI.getWidth(),CELL_HEIGHT/mineI.getHeight());
 		add(mineI);
 		mineI.sendToBack();
-		boomer = new Sound("boom.mp3");
+	//	boomer = new Sound("boom.mp3");
 	}
 	
 	public void reveal()
 	{
 		isRevealed=true;
 		rect.setFilled(false);
-		boomer.playSoundOnce();
+	//	boomer.playSoundOnce();
 		//add boom every time it's a mime////
 	}
 	public boolean isMine()
