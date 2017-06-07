@@ -4,6 +4,8 @@ package edu.chatham.games;
 //easy 8x8-10 med 16x16-40 16x30-99
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
@@ -12,8 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-
+import acm.graphics.GObject;
 import acm.graphics.GPoint;
+import acm.graphics.GScalable;
 import acm.program.GraphicsProgram;
 
 /**
@@ -44,7 +47,7 @@ public class Minesweeper extends GraphicsProgram {
 	{
 		//sets up the difficulty combobox
 		makeBoard(getDifficulty());
-		setSize((int)board.getWidth()+10,(int)board.getHeight()+90);
+		setSize((int)board.getWidth()+X_OFFSET,(int)board.getHeight()+Y_OFFSET);
 		turns=0;
 		startTime = System.currentTimeMillis();
 		gameDone=false;
@@ -58,6 +61,7 @@ public class Minesweeper extends GraphicsProgram {
 	    add(difficult, SOUTH);//adds the difficulty combobox to the southern border
 	    add(messages = new JLabel("Welcome to minesweeper"), NORTH);
 	    add(timer = new JLabel("0:00"),NORTH);
+	    catchResizeEvents();
 		ActionListener buttonlistener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -95,7 +99,7 @@ public class Minesweeper extends GraphicsProgram {
 	}
 	public void makeBoard(Difficulty_ diff)
 	{
-		board= new Board(diff, this);
+		board = new Board(diff,this);
 		add(board);
 	}
 	
@@ -191,13 +195,36 @@ public class Minesweeper extends GraphicsProgram {
 		
 		return Difficulty_.INTERMEDIATE;
 	}
+	private void catchResizeEvents() {
+		wid = getWidth();
+		ht = getHeight();
+
+		addComponentListener(new ComponentAdapter() {
+			public void componentResized(ComponentEvent e) {
+				double scaleX = getWidth() / wid,  scaleY = getHeight() / ht;
+				for (int i = 0; i < getElementCount(); i++) {
+					Object obj = getElement(i);
+					if (obj instanceof GObject) {
+						if (obj instanceof GScalable) {
+							((GScalable) obj).scale(scaleX, scaleY);
+						}
+						((GObject) obj).setLocation(((GObject) obj).getX()*scaleX, ((GObject) obj).getY()*scaleY);
+					}
+				}
+				wid = getWidth(); ht = getHeight();
+			}
+		}); 		
+	}
 	// other declarations go here
 	private Board board;
 	private int turns=0;
 	JButton newGame;
+	double wid, ht;
 	JLabel messages,timer;
 	JComboBox<String> difficult;
 	long startTime;
+	private final int X_OFFSET = 15;
+	private final int Y_OFFSET = 85;
 	boolean keepCounting=false,gameDone;
 }
 
