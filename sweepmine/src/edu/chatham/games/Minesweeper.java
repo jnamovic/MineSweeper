@@ -148,14 +148,14 @@ public class Minesweeper extends GraphicsProgram {
 			//Cell cell = board.getCellAt(e.getPoint());
 		
 		}
-		if(SwingUtilities.isRightMouseButton(e)){
+		if(SwingUtilities.isRightMouseButton(e)&&turns>0){
 			Cell cell=null;
 			for(int i=0;i<board.getCells().length;i++)
 			for(int x=0;x<board.getCells()[i].length;x++)
 				if( board.getCells()[i][x].contains(new GPoint(e.getPoint())))
 				 cell=board.getCells()[i][x];
 			board.flagCell(cell);}
-		if(board.allFlagged()||board.allRevealed())
+		if((board.allFlagged()||board.allRevealed())&&turns>0)
 		{
 			gameEnd();
 			newGame.setEnabled(true);
