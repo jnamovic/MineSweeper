@@ -35,7 +35,7 @@ public abstract class Cell extends GCompound {
 		super();
 		game=d;
 		rect = new GRect(CELL_WIDTH, CELL_WIDTH);
-		rect.setFillColor(Color.gray);
+		rect.setFillColor(Color.lightGray);
 		rect.setFilled(true);
 		add(rect, 0, 0);
 		row = r;
