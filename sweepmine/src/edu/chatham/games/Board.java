@@ -127,8 +127,8 @@ private int rows, cols,mines;
 		{
 			for(int i=0; i<rows;i++){
 				for(int j = 0; j<cols;j++){
-					double rando = Math.random();
-					if(rando<ratio&&!cellList[i][j].isMine()&&!((i==x&&j==y)||(i==x-1&&j==y)||
+					
+					if(Math.random()<ratio&&!cellList[i][j].isMine()&&!((i==x&&j==y)||(i==x-1&&j==y)||
 							(i==x-1&&j==y-1)||(i==x-1&&j==y+1)||(i==x&&j==y-1)||(i==x&&j==y+1)||(i==x+1&&j==y)||
 							(i==x+1&&j==y-1)||(i==x+1&&j==y+1))){
 						remove(cellList[i][j]);
@@ -137,8 +137,8 @@ private int rows, cols,mines;
 						left--;
 						if(left==0)
 							break;
-						System.out.println(left);
-						System.out.println(mines);
+//						System.out.println(left);
+//						System.out.println(mines);
 					}
 					//System.out.println(rando + " " + ratio);
 				}
