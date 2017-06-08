@@ -22,7 +22,6 @@ public class MineCell extends Cell{
 		mineI.scale(CELL_WIDTH/mineI.getWidth(),CELL_HEIGHT/mineI.getHeight());
 		add(mineI);
 		mineI.sendToBack();
-		soundPlayer(randomName());
 	}
 	
 	public void soundPlayer(String boom)
@@ -43,18 +42,18 @@ public class MineCell extends Cell{
 		}
 		
 	}
-	public String randomName()
-	{
-		int num = (int) (Math.random()*3);
-		return "boom"+num+".mp3";
-	}
+//	public String randomName()
+//	{
+//		int randoNum = (int) (Math.random()*3);
+//		return "boom"+randoNum+".wav";
+//	}
 	
 	public void reveal()
 	{
 		isRevealed=true;
 		rect.setFilled(false);
-	//	boomer.playSoundOnce();
-		//add boom every time it's a mime////
+		soundPlayer("boom0.wav");
+	
 	}
 	public boolean isMine()
 	{
