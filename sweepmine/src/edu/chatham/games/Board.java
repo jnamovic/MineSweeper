@@ -179,7 +179,7 @@ private int rows, cols,mines;
 	}
 	public String randomName()
 	{
-		int randoNum = (int) (Math.random()*2+4);
+		int randoNum = (int) (Math.random()*8);
 		return "boom"+randoNum+".wav";
 	}
 	public boolean allFlagged()
