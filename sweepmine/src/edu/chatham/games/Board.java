@@ -102,6 +102,8 @@ private int rows, cols,mines;
 				if(!cellList[i][j].isRevealed())
 				{
 					cellList[i][j].reveal();
+//					if(cellList[i][j].isMine())
+//						pause(100);
 				}
 	}
 	
