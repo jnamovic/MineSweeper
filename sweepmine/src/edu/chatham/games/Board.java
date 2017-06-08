@@ -1,6 +1,14 @@
 package edu.chatham.games;
 
 import java.awt.Point;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import acm.graphics.GCompound;
 import acm.graphics.GPoint;
@@ -97,6 +105,7 @@ private int rows, cols,mines;
 	
 	public void blowAllUp()
 	{
+		soundPlayer(randomName());
 		for(int i=0;i<rows;i++)
 			for(int j=0;j<cols;j++)
 				if(!cellList[i][j].isRevealed())
@@ -150,6 +159,29 @@ private int rows, cols,mines;
 		}
 		
 }
+	public void soundPlayer(String boom)
+	{
+		try {
+			File explosion = new File(boom);
+			AudioInputStream inStream;
+			inStream = AudioSystem.getAudioInputStream(explosion);
+			Clip clip = AudioSystem.getClip();
+			clip.open(inStream);
+			clip.start();
+		} catch (UnsupportedAudioFileException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public String randomName()
+	{
+		int randoNum = (int) (Math.random()*2+4);
+		return "boom"+randoNum+".wav";
+	}
 	public boolean allFlagged()
 	{
 		for(int i=0;i<rows;i++)

@@ -24,36 +24,13 @@ public class MineCell extends Cell{
 		mineI.sendToBack();
 	}
 	
-	public void soundPlayer(String boom)
-	{
-		try {
-			File explosion = new File(boom);
-			AudioInputStream inStream;
-			inStream = AudioSystem.getAudioInputStream(explosion);
-			Clip clip = AudioSystem.getClip();
-			clip.open(inStream);
-			clip.start();
-		} catch (UnsupportedAudioFileException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-//	public String randomName()
-//	{
-//		int randoNum = (int) (Math.random()*3);
-//		return "boom"+randoNum+".wav";
-//	}
+	
+
 	
 	public void reveal()
 	{
 		isRevealed=true;
 		rect.setFilled(false);
-		soundPlayer("boom0.wav");
-	
 	}
 	public boolean isMine()
 	{
