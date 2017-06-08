@@ -47,7 +47,7 @@ public class Minesweeper extends GraphicsProgram {
 	{
 		//sets up the difficulty combobox
 		makeBoard(getDifficulty());
-		setSize((int)board.getWidth(),(int)board.getHeight()+Y_OFFSET);
+		setSize((int)board.getWidth()+X_OFFSET,(int)board.getHeight()+Y_OFFSET);
 		turns=0;
 		startTime = System.currentTimeMillis();
 		gameDone=false;
@@ -227,6 +227,7 @@ public class Minesweeper extends GraphicsProgram {
 	JComboBox<String> difficult;
 	long startTime;
 	private final int Y_OFFSET = 85;
+	private final int X_OFFSET = 10;
 	boolean keepCounting=false,gameDone,iAllowYouTo=false;
 }
 

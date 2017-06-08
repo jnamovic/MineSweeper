@@ -6,7 +6,7 @@ import java.io.*;
 import java.applet.AudioClip;
 public class MineCell extends Cell{
 
-	AudioClip clip;
+	//AudioClip clip;
 //	Sound boomer;
 	public MineCell(int r, int c, Minesweeper d) 
 	{
@@ -17,6 +17,8 @@ public class MineCell extends Cell{
 		mineI.sendToBack();
 	//	boomer = new Sound("boom.mp3");
 	}
+	
+	//public void 
 	
 	public void reveal()
 	{
