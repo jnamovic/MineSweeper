@@ -87,13 +87,18 @@ public class Minesweeper extends GraphicsProgram {
 			pause(1);
 			if(keepCounting)
 			{
-				long totalSeconds= (System.currentTimeMillis() - startTime)/1000;
+				long totalSeconds= 10-(System.currentTimeMillis() - startTime)/1000;
 				long dispSecond = (totalSeconds%60);
 				long dispMin =(totalSeconds/60);
 				if(dispSecond>9)
 				timer.setText(dispMin + ":" + dispSecond);
 				else
 					timer.setText(dispMin+ ":0" + dispSecond);
+				if (totalSeconds==0){
+					board.blowAllUp();
+					gameEnd();
+					
+				}
 			}
 				
 		}
