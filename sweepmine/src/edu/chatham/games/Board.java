@@ -8,8 +8,8 @@ import acm.graphics.GPoint;
 public class Board extends GCompound {
 private Cell[][] cellList;
 private Minesweeper game;	
-public static final int CELL_WIDTH = 35;
-public static final int CELL_HEIGHT = 35;
+public static final int CELL_WIDTH = 20;
+public static final int CELL_HEIGHT = 20;
 private int rows, cols,mines;
 	public Board(Difficulty_ diff, Minesweeper sweep)
 	{

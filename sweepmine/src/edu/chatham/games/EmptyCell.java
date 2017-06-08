@@ -19,7 +19,7 @@ public class EmptyCell extends Cell {
 	public void reveal() {
 		if(!isRevealed){
 			isRevealed=true;
-			rect.setFilled(false);
+			rect.setFillColor(Color.lightGray);
 			for(int x=-1;x<2;x++){
 				for(int y=-1;y<2;y++){//the line after this one will cause an error when the square is in a corner but i dont know how to fix it
 					if(!(x+row<0||x+row>game.getBoard().getRows()||y+col<0||y+col>game.getBoard().getCols()))
@@ -31,8 +31,10 @@ public class EmptyCell extends Cell {
 			if(minesNear==0){
 				for(int x=-1;x<2;x++){
 					for(int y=-1;y<2;y++){//the line after this one will cause an error when the square is in a corner but i dont know how to fix it
-						if(!(x+row<0||x+row>game.getBoard().getRows()||y+col<0||y+col>game.getBoard().getCols()))
+						if(!(x+row<0||x+row>game.getBoard().getRows()||y+col<0||y+col>game.getBoard().getCols())){
 							game.getBoard().getCells()[row+x][col+y].reveal();
+							
+						}
 					}
 				}	
 			}	

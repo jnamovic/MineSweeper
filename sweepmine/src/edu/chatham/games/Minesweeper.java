@@ -47,11 +47,11 @@ public class Minesweeper extends GraphicsProgram {
 	{
 		//sets up the difficulty combobox
 		makeBoard(getDifficulty());
-		setSize((int)board.getWidth()+X_OFFSET,(int)board.getHeight()+Y_OFFSET);
+		setSize((int)board.getWidth(),(int)board.getHeight()+Y_OFFSET);
 		turns=0;
 		startTime = System.currentTimeMillis();
 		gameDone=false;
-			
+		iAllowYouTo=true;	
 	}
 	public void init() {
 		initDifficulty();
@@ -61,11 +61,12 @@ public class Minesweeper extends GraphicsProgram {
 	    add(difficult, SOUTH);//adds the difficulty combobox to the southern border
 	    add(messages = new JLabel("Welcome to minesweeper"), NORTH);
 	    add(timer = new JLabel("0:00"),NORTH);
-	    catchResizeEvents();
+	    //catchResizeEvents();
 		ActionListener buttonlistener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
 				removeAll();
+				iAllowYouTo=false;
 				setup();
 				messages.setText("Good Luck!");
 				timer.setText("0:00");
@@ -195,7 +196,9 @@ public class Minesweeper extends GraphicsProgram {
 		
 		return Difficulty_.INTERMEDIATE;
 	}
-	private void catchResizeEvents() {
+	private void catchResizeEvents() 
+	{
+		if(iAllowYouTo){
 		wid = getWidth();
 		ht = getHeight();
 
@@ -213,7 +216,7 @@ public class Minesweeper extends GraphicsProgram {
 				}
 				wid = getWidth(); ht = getHeight();
 			}
-		}); 		
+		}); }		
 	}
 	// other declarations go here
 	private Board board;
@@ -223,8 +226,7 @@ public class Minesweeper extends GraphicsProgram {
 	JLabel messages,timer;
 	JComboBox<String> difficult;
 	long startTime;
-	private final int X_OFFSET = 15;
 	private final int Y_OFFSET = 85;
-	boolean keepCounting=false,gameDone;
+	boolean keepCounting=false,gameDone,iAllowYouTo=false;
 }
 
