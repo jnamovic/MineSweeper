@@ -231,8 +231,8 @@ public class Minesweeper extends GraphicsProgram {
 	JLabel messages,timer;
 	JComboBox<String> difficult;
 	long startTime;
-	private final int Y_OFFSET = 125;
-	private final int X_OFFSET = 20;
+	private final int Y_OFFSET = 70;
+	private final int X_OFFSET = 5;
 	boolean keepCounting=false,gameDone,iAllowYouTo=false;
 }
 
