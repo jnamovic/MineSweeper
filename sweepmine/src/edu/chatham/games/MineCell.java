@@ -15,13 +15,15 @@ public class MineCell extends Cell{
 
 	//AudioClip clip;
 //	Sound boomer;
+	GImage mineI;
 	public MineCell(int r, int c, Minesweeper d) 
 	{
 		super(r, c, d);
-		GImage mineI = new GImage("mine.png");
+		mineI = new GImage("mine.png");
 		mineI.scale(CELL_WIDTH/mineI.getWidth(),CELL_HEIGHT/mineI.getHeight());
 		add(mineI);
 		mineI.sendToBack();
+		mineI.setVisible(false);
 	}
 	
 	
@@ -31,6 +33,7 @@ public class MineCell extends Cell{
 	{
 		isRevealed=true;
 		rect.setFilled(false);
+		mineI.setVisible(true);
 	}
 	public boolean isMine()
 	{
