@@ -43,7 +43,8 @@ public class EmptyCell extends Cell {
 		{
 			colorNum();
 			number.scale(getWidth()/number.getWidth(),getHeight()/number.getHeight());
-		add(number);
+			add(number);
+			number.sendBackward();
 		//add the mines-near number to the image
 		
 		}

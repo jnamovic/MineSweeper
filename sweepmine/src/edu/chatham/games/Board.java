@@ -89,6 +89,10 @@ private int rows, cols,mines;
 				}
 			}
 		}
+		for(int a = 0; a<cellList.length;a++)
+			for(int b = 0; b<cellList[a].length;b++)
+				if(!cellList[a][b].isRevealed())
+					cellList[a][b].sendToFront();
 	}
 	
 	public Cell getCellAt(Point loc){
