@@ -11,6 +11,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import java.applet.AudioClip;
+import java.awt.Color;
 public class MineCell extends Cell{
 
 	//AudioClip clip;
@@ -32,8 +33,9 @@ public class MineCell extends Cell{
 	public void reveal()
 	{
 		isRevealed=true;
-		rect.setFilled(false);
+		rect.setFillColor(Color.lightGray);
 		mineI.setVisible(true);
+		mineI.sendToFront();
 	}
 	public boolean isMine()
 	{
