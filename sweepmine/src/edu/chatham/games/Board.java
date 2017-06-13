@@ -18,6 +18,7 @@ private Cell[][] cellList;
 private Minesweeper game;	
 public static final int CELL_WIDTH = 25;
 public static final int CELL_HEIGHT = 25;
+Clip clip;
 private int rows, cols,mines;
 	public Board(Difficulty_ diff, Minesweeper sweep)
 	{
@@ -169,10 +170,10 @@ private int rows, cols,mines;
 			File explosion = new File(boom);
 			AudioInputStream inStream;
 			inStream = AudioSystem.getAudioInputStream(explosion);
-			Clip clip = AudioSystem.getClip();
+			clip = AudioSystem.getClip();
 			clip.open(inStream);
 			clip.start();
-		} catch (UnsupportedAudioFileException | IOException e) {
+			} catch (UnsupportedAudioFileException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (LineUnavailableException e) {
@@ -180,6 +181,10 @@ private int rows, cols,mines;
 			e.printStackTrace();
 		}
 		
+	}
+	public void stopIt()
+	{
+		clip.drain();
 	}
 	public String randomName()
 	{

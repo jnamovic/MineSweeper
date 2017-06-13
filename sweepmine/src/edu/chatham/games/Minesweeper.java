@@ -84,7 +84,9 @@ public class Minesweeper extends GraphicsProgram {
 	{
 		while(true)
 		{
+			//board.soundPlayer(board.randomName());
 			pause(1);
+			//board.stopIt();
 			if(keepCounting)
 			{
 				long totalSeconds= 90-(System.currentTimeMillis() - startTime)/1000;
