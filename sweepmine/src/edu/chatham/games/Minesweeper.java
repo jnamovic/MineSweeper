@@ -60,7 +60,7 @@ public class Minesweeper extends GraphicsProgram {
 		add(newGame = new JButton("New Game"), SOUTH);// adds the "new game" button to the southern border 
 	    add(difficult, SOUTH);//adds the difficulty combobox to the southern border
 	    add(messages = new JLabel("Welcome to minesweeper"), NORTH);
-	    add(timer = new JLabel("0:00"),NORTH);
+	    add(timer = new JLabel("90"),NORTH);
 	    //catchResizeEvents();
 		ActionListener buttonlistener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
@@ -69,7 +69,7 @@ public class Minesweeper extends GraphicsProgram {
 				iAllowYouTo=false;
 				setup();
 				messages.setText("Good Luck!");
-				timer.setText("0:00");
+				timer.setText("90");
 			}
 
 			};
@@ -91,9 +91,9 @@ public class Minesweeper extends GraphicsProgram {
 				long dispSecond = (totalSeconds%60);
 				long dispMin =(totalSeconds/60);
 				if(dispSecond<10)
-				timer.setText("0" + dispSecond);
+				timer.setText("0" + totalSeconds);
 				else
-					timer.setText(""+dispSecond);
+					timer.setText(""+totalSeconds);
 				if (totalSeconds==0){
 					board.blowAllUp();
 					gameEnd();
