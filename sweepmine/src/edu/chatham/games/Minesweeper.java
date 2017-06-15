@@ -7,7 +7,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -60,7 +67,7 @@ public class Minesweeper extends GraphicsProgram {
 		add(newGame = new JButton("New Game"), SOUTH);// adds the "new game" button to the southern border 
 	    add(difficult, SOUTH);//adds the difficulty combobox to the southern border
 	    add(messages = new JLabel("Welcome to minesweeper"), NORTH);
-	    add(timer = new JLabel("90"),NORTH);
+	  //  add(timer = new JLabel("90"),NORTH);
 	    //catchResizeEvents();
 		ActionListener buttonlistener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
@@ -69,7 +76,7 @@ public class Minesweeper extends GraphicsProgram {
 				iAllowYouTo=false;
 				setup();
 				messages.setText("Good Luck!");
-				timer.setText("90");
+		//		timer.setText("90");
 			}
 
 			};
@@ -84,25 +91,54 @@ public class Minesweeper extends GraphicsProgram {
 	{
 		while(true)
 		{
-			//board.soundPlayer(board.randomName());
+			
 			pause(1);
-			//board.stopIt();
+			
 			if(keepCounting)
 			{
-				long totalSeconds= 90-(System.currentTimeMillis() - startTime)/1000;
-				long dispSecond = (totalSeconds%60);
-				long dispMin =(totalSeconds/60);
-				if(dispSecond<10)
-				timer.setText("0" + totalSeconds);
-				else
-					timer.setText(""+totalSeconds);
-				if (totalSeconds==0){
-					board.blowAllUp();
-					gameEnd();
+				if(turns>0)
+				endIt();
+				//long totalSeconds= 90-(System.currentTimeMillis() - startTime)/1000;
+//				long totalSeconds=(System.currentTimeMillis() - startTime)/1000;
+//				long dispSecond = (totalSeconds%60);
+//				long dispMin =(totalSeconds/60);
+//				if(dispSecond<10)
+//				timer.setText(dispMin+":0" + dispSecond);
+//				else
+//					timer.setText(dispMin+":"+ dispSecond);
+			//	if (totalSeconds==0){
+				//	board.blowAllUp();
+				//	gameEnd();
 					
-				}
+				//}
 			}
 				
+		}
+	} 
+	public void soundPlayers()
+	{
+		try {
+			File explosion = new File("hall.wav");
+			AudioInputStream inStream;
+			inStream = AudioSystem.getAudioInputStream(explosion);
+			clip = AudioSystem.getClip();
+			clip.open(inStream);
+			clip.start();
+			} catch (UnsupportedAudioFileException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public void endIt()
+	{
+		if(clip.getMicrosecondLength()==clip.getMicrosecondPosition()){
+		board.blowAllUp();
+		gameEnd();
+		clip.flush();
 		}
 	}
 	public void makeBoard(Difficulty_ diff)
@@ -134,7 +170,8 @@ public class Minesweeper extends GraphicsProgram {
 					 newGame.setEnabled(false);
 					 startTime = System.currentTimeMillis();
 					 keepCounting=true;
-				 }
+					 soundPlayers();
+						 }
 				 turns++;
 				 if(!cell.isFlagged)
 				 board.revealCell(cell);
@@ -181,6 +218,8 @@ public class Minesweeper extends GraphicsProgram {
 		newGame.setEnabled(true);
 		keepCounting=false;
 		gameDone=true;
+		clip.stop();
+		clip.flush();
 	}
 
 	public Board getBoard(){
@@ -212,15 +251,9 @@ public class Minesweeper extends GraphicsProgram {
 		addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent e) {
 				double scaleX = getWidth() / wid,  scaleY = getHeight() / ht;
-				for (int i = 0; i < getElementCount(); i++) {
-					Object obj = getElement(i);
-					if (obj instanceof GObject) {
-						if (obj instanceof GScalable) {
-							((GScalable) obj).scale(scaleX, scaleY);
-						}
-						((GObject) obj).setLocation(((GObject) obj).getX()*scaleX, ((GObject) obj).getY()*scaleY);
-					}
-				}
+				
+							(board).scale(scaleX, scaleY);
+					
 				wid = getWidth(); ht = getHeight();
 			}
 		}); }		
@@ -230,11 +263,12 @@ public class Minesweeper extends GraphicsProgram {
 	private int turns=0;
 	JButton newGame;
 	double wid, ht;
-	JLabel messages,timer;
+	JLabel messages;//timer;
 	JComboBox<String> difficult;
 	long startTime;
 	private final int Y_OFFSET = 70;
 	private final int X_OFFSET = 5;
 	boolean keepCounting=false,gameDone,iAllowYouTo=false;
+	Clip clip;
 }
 

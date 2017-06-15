@@ -79,6 +79,14 @@ private int rows, cols,mines;
 				add(cellList[i][j],CELL_WIDTH*i,CELL_HEIGHT*j);
 			}
 	}
+	public void rePaintIt()
+	{
+		for(int i=0; i<rows;i++)
+			for(int j = 0; j<cols;j++)
+			{
+				add(cellList[i][j],CELL_WIDTH*i,CELL_HEIGHT*j);
+			}
+	}
 	public void revealCell(Cell cell){
 		for(int x=0; x<cellList.length; x++)
 		{
@@ -116,7 +124,13 @@ private int rows, cols,mines;
 				if(!cellList[i][j].isRevealed())
 				{
 					cellList[i][j].reveal();
-//					if(cellList[i][j].isMine())
+//					if(cellList[i][j].isMine()){
+//						
+//						pause(1);
+//						stopIt();
+//						removeAll();
+//						rePaintIt();
+									
 //						pause(100);
 				}
 	}
