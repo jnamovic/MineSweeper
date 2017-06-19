@@ -121,7 +121,7 @@ public class Minesweeper extends GraphicsProgram {
 			File explosion = new File("hall.wav");
 			AudioInputStream inStream;
 			inStream = AudioSystem.getAudioInputStream(explosion);
-			clip = AudioSystem.getClip();
+			clip = AudioSystem.getClip();//
 			clip.open(inStream);
 			clip.start();
 			} catch (UnsupportedAudioFileException | IOException e) {
