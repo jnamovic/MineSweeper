@@ -115,10 +115,26 @@ public class Minesweeper extends GraphicsProgram {
 				
 		}
 	} 
+	public String SongName()
+	{
+		String hardy = (String) difficult.getSelectedItem();
+		String song;
+		
+			switch(hardy)
+			{
+			case "Beginner": song = "mappy.wav";
+			break;
+			case "Intermediate": song = "hall.wav";
+			break;
+			default :song = "count.wav";
+			break;
+			}
+			return song;
+	}
 	public void soundPlayers()
 	{
-		try {
-			File explosion = new File("hall.wav");
+			try {
+			File explosion = new File(SongName());
 			AudioInputStream inStream;
 			inStream = AudioSystem.getAudioInputStream(explosion);
 			clip = AudioSystem.getClip();//
